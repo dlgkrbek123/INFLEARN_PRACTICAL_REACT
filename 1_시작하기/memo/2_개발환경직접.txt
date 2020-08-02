@@ -1,0 +1,18 @@
+npm install없이 구축해봄
+바벨, 웹팩이 리액트의 이해를 방해되기도 함
+
+-------------------------------
+
+hello-world
+  element가 리액트에서 ui를 나타내는 최소 단위
+  태그명, attribute, children
+
+React.createElement(
+  "div", 
+  null ,
+  React.createElement("p", null, "hello"),
+  React.createElement("p", null, "world") 
+)
+
+ReactDOM.render를 여러곳에서 쓸 수도 있지만
+사실 한개로 하는게 정석
