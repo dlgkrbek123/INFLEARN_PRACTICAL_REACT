@@ -1,0 +1,57 @@
+Babel
+- 자바스크립트 코드를 변환해주는 컴파일러
+- es6(최신 js 문법) => es5(레거시 문법)
+
+- 주석제거나 코드 압축을 위해서 사용하기도 함
+- React에서는 JSX 문법으로 작성된 코드를
+  React.createElement로 변환
+
+------------------------------------------------------------------
+
+- React.createElement로 컴포넌트가 표현할 UI를 
+  묘사하는건 복잡하고 가독성이 낮다.
+- JSX 문법을 사용하면 html과 유사한 방식으로 간결하게
+  작성 가능 
+
+
+<div className="box">
+  <Title text="hello world" width={200} />
+  <button onClick={() => {}}>좋아요</button>
+  <a href="/home" style={{ marginTop: '10px', color: 'red' }}>
+    홈으로 이동
+  </a>
+</div>
+
+- camelCase를 활용한다.
+- className 
+ => 해당 dom의 class attribute를 지정, 
+ => js에서는 class가 예약어라 별칭을 사용
+
+------------------------------------------------------------------
+
+simple1.js의 내용을 simple2.js와 같이 작성가능
+JSX는 js 표준 문법이 아니므로 simple2.js시 오류 발생
+바벨로 변환해서 실행시키자
+
+1. package.json 생성
+- npm init -y 
+
+2. npm으로 바벨 설치
+- npm install @babel/core @babel/cli @babel/preset-react
+
+- @babel/core : 핵심적인 바벨의 기능을 구현한 패키지
+- @babel/cli  : cli에서 사용할 바벨명령어가 구현된 바이너리 패키지
+- @babel/preset-react : 리액트를 위한 플러그인 집합
+
+
+plugin : 하나의 변환 기능
+preset : 여러개의 플러그인을 모아놓은 것
+
+
+npx babel --watch src --out-dir . --presets @babel/preset-react
+
+- /node_modules/.bin 폴더에 있는 파일을 실행시켜준다.
+- babel 바이너리를 실행하여 src폴더에 있는 js를 현재 디렉토리에 컴파일해서 출력한다.
+- preset-react가 jsx를 React.createElement 호출로 수정해 줌
+
+------------------------------------------------------------------

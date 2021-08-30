@@ -1,0 +1,66 @@
+1. css 파일
+- 컴포넌트에서 css파일을 import해서 사용
+- 렌더링되고 있는 컴포넌트에 엮인 css파일간
+  충돌이 발생 가능
+
+import './Button.css'
+
+----------------------------------------
+
+2. css 모듈
+- Button.module.css와 같이 파일명 적용
+- 해시값이 붙은 클래스명을 얻어와서 이름이 같아도 충돌 x
+- 충돌은 방지되는데 
+
+import Style from './Button.module.css'
+import cn from 'classnames'
+
+<button 
+  className={cn(Style.Button, {
+    [Style.big]: size === 'big',
+    [Style.small]: size !== 'big'
+  })} 
+/>
+
+----------------------------------------
+
+3. sass
+- 컴파일을 사용하여 확장된 css 문법
+- node-sass 패키지를 사용해야 함
+
+.scss 파일을 작성해 import
+
+----------------------------------------
+
+4. css-in-js
+- css 코드를 js파일에서 작성
+- 래퍼 기반으로 스코프가 유지됨
+- styled-components
+
+import styled from 'styled-components'
+
+const BoxCommon = styled.div`
+  height: 50px;
+  background-color: #aaaaaa;
+`
+const BoxBig = styled(BoxCommon)`
+  width: 200px;
+`
+const BoxSmall = styled(BoxCommon)`
+  width: 100px;
+`
+
+const Box = ({ size }) => {
+  const isBig = size === 'big'
+  const Wrapper = isBig ? BoxBig : BoxSmall 
+  const text = isBig ? "큰 박스": "작은 박스"
+ 
+  return <Wrapper>{text}</Wrapper>
+}
+
+- props를 전달해서 사용 가능
+
+const ButtonCommon = styled.button`
+  width: ${props => props.isBig ? 100 : 50}px;
+`
+<ButtonCommon isBig={isBig}></ButtonCommon>

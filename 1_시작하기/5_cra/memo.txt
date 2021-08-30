@@ -1,0 +1,54 @@
+create-react-app
+- 리액트 개발환경 직접 구축하려면 복잡
+- 페이스북에서 관리하는 공식 툴
+
+npx create-react-app cra-test
+
+
+- eslint, 빌드설정을 거의 변경 불가함
+- css, svg, json을 import하여 사용가능 (웹팩)
+
+
+- serviceWorker는 pwa사용을 위한 것
+- React.StrictMode 컴포넌트는 개발모드에서만
+  동작하여 잘못 작성한 코드를 발견해줌
+
+----------------------------------------
+
+- 4개의 script를 지원
+
+1. npm start
+- 로컬 서버로 개발 지원
+
+2. npm build
+- 빌드해서 정적파일을 생성
+- build 디렉토리의 내용을 s3 같은데 올려서 사용
+
+npx serve -s ./build
+
+
+3. eject
+- react-scripts를 사용하지 않고 모든 설정파일을 추출
+- cra기반으로 구축하고 싶다면 추출해서 커스터마이징
+- 추출안하는게 좋음
+
+----------------------------------------
+
+환경변수
+
+process.env.{name}
+
+
+process.env.NODE_ENV
+- 기본 제공하는 환경변수
+
+- start => development
+- test  => test
+- build => production
+
+
+.env와도 연동됨
+=> .env.development
+=> .env.production
+
+----------------------------------------
